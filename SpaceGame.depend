@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1570460230 source:/home/daan/projects/SpaceGame/main.cpp
+	<iostream>
+	<raytraceengine.h>
+
+1570459600 /home/daan/projects/RayTraceEngine/include/raytraceengine.h
+	<glad/glad.h>
+	<GLFW/glfw3.h>
+	"raytracecontext.h"
+	"rtwindow.h"
+	"mesh.h"
+
+1570459729 /home/daan/projects/RayTraceEngine/include/rtwindow.h
+	<glad/glad.h>
+	<GLFW/glfw3.h>
+
+1570450031 /home/daan/projects/RayTraceEngine/include/world.h
+
+1570451285 /home/daan/projects/RayTraceEngine/include/mesh.h
+	<vector>
+	<stdint.h>
+
+1570459990 /home/daan/projects/RayTraceEngine/include/raytracecontext.h
+	"rtwindow.h"
+	<vector>
+	"mesh.h"
+
+1570448718 /home/daan/projects/RayTraceEngine/include/glad/glad.h
+	<KHR/khrplatform.h>
+
+1570448718 /home/daan/projects/RayTraceEngine/include/KHR/khrplatform.h
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+
