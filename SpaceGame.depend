@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1570460230 source:/home/daan/projects/SpaceGame/main.cpp
+1570646852 source:/home/daan/projects/SpaceGame/main.cpp
 	<iostream>
 	<raytraceengine.h>
+	<vector>
 
 1570459600 /home/daan/projects/RayTraceEngine/include/raytraceengine.h
 	<glad/glad.h>
@@ -16,14 +17,17 @@
 
 1570450031 /home/daan/projects/RayTraceEngine/include/world.h
 
-1570451285 /home/daan/projects/RayTraceEngine/include/mesh.h
+1570641617 /home/daan/projects/RayTraceEngine/include/mesh.h
 	<vector>
 	<stdint.h>
+	"raytracecontext.h"
+	"tree.h"
 
-1570459990 /home/daan/projects/RayTraceEngine/include/raytracecontext.h
+1570645823 /home/daan/projects/RayTraceEngine/include/raytracecontext.h
 	"rtwindow.h"
 	<vector>
-	"mesh.h"
+	"Triangle.h"
+	"tree.h"
 
 1570448718 /home/daan/projects/RayTraceEngine/include/glad/glad.h
 	<KHR/khrplatform.h>
@@ -32,4 +36,11 @@
 	<stdint.h>
 	<inttypes.h>
 	<stdint.h>
+
+1570646032 /home/daan/projects/RayTraceEngine/include/tree.h
+	<algorithm>
+	<vector>
+	"Triangle.h"
+
+1570623850 /home/daan/projects/RayTraceEngine/include/Triangle.h
 
