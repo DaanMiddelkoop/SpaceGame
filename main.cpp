@@ -33,6 +33,9 @@ int main() {
 
     player->setVertices(vertices.data(), vertices.size());
     player->build();
+    rtcontext->setCameraPosition(0.0f, 0.0f, -1.0f);
+    rtcontext->setCameraDirection(0.0f, 0.0f, 1.0f);
+
 
     while (!RT::windowShouldClose(window)) {
 
