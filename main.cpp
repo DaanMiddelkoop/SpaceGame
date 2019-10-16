@@ -2,6 +2,8 @@
 #include <raytraceengine.h>
 
 #include <vector>
+#include <chrono>
+#include <thread>
 
 int main() {
     std::cout << "SpaceGame v0.1\n";
@@ -14,8 +16,9 @@ int main() {
 
     std::vector<float> vertices = std::vector<float>();
 
-    for (int x = 1; x < 4; x++) {
-        for (int y = 1; y < 4; y++) {
+    int something = 2;
+    for (int x = -something; x < something; x++) {
+        for (int y = -something; y < something; y++) {
             vertices.push_back(0.1 * x);
             vertices.push_back(0.1 * y);
             vertices.push_back(0.0f);
@@ -33,16 +36,17 @@ int main() {
 
     player->setVertices(vertices.data(), vertices.size());
     player->build();
-    rtcontext->setCameraPosition(0.0f, 0.0f, -1.0f);
+    rtcontext->setCameraPosition(0.0f, 0.0f, -3.0f);
     rtcontext->setCameraDirection(0.0f, 0.0f, 1.0f);
 
 
     while (!RT::windowShouldClose(window)) {
-
+        //std::cout << "drawwwwww\n";
         rtcontext->draw(window);
 
         RT::update(window);
 
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
     }
 
