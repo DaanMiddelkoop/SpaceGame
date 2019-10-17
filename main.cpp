@@ -4,6 +4,7 @@
 #include <vector>
 #include <chrono>
 #include <thread>
+#include <stdint.h>
 
 int main() {
     std::cout << "SpaceGame v0.1\n";
@@ -16,7 +17,7 @@ int main() {
 
     std::vector<float> vertices = std::vector<float>();
 
-    int something = 5;
+    int something = 500;
     for (int x = -something; x < something; x++) {
         for (int y = -something; y < something; y++) {
             vertices.push_back(0.1 * x);
@@ -34,14 +35,38 @@ int main() {
 
     }
 
+    uint8_t texture_data[16] = {
+        255, 0, 0, 255,
+        0, 255, 0, 255,
+        0, 0, 255, 255,
+        255, 0, 255, 255
+    };
+
+    RT::TextureHandle texture = rtcontext->createTexture();
+
+    std::cout << "Reaching this?!!!!!\n";
+    texture.setData(2, 2, (uint8_t*)&texture_data);
+
+    RT::MaterialHandle material = rtcontext->createMaterial();
+    material.setTexture(&texture);
+
+    player->setMaterial(&material);
+
+
     player->setVertices(vertices.data(), vertices.size());
     player->build();
-    rtcontext->setCameraPosition(0.0f, 0.0f, -5.0f);
+    rtcontext->setCameraPosition(0.0f, 0.0f, -1.6f);
     rtcontext->setCameraDirection(0.0f, 0.0f, 1.0f);
+
+    float camera_x = 0.0f;
+
+    std::cout << "amount of pixels reserved on gpu: " << rtcontext->getPixels()->size() << "\n";
 
     float x = 0;
     while (!RT::windowShouldClose(window)) {
         //std::cout << "drawwwwww\n";
+        camera_x += 0.1f;
+        //rtcontext->setCameraPosition(0.0f, 0.0f, -2.0f - camera_x);
         rtcontext->draw(window);
         rtcontext->setDebugInfo(x, 0, 0);
 
