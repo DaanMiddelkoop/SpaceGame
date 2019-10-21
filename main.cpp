@@ -82,6 +82,8 @@ int main() {
 
 
     //player->build();
+    player->setPosition(1.0, 0.0, 0.0);
+
     rtcontext->setCameraPosition(0.0f, 0.0f, 0.0f);
     rtcontext->setCameraDirection(0.0f, 0.0f, -1.0f);
 
