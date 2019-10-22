@@ -71,10 +71,16 @@ int main() {
     //player->setVertices(vertices.data(), vertices.size());
 
 
-    player->setMaterial(&material);
+    RT::Mesh* monkey1 = rtcontext->createMesh();
+    RT::Mesh* monkey2 = rtcontext->createMesh();
+
+    monkey1->setMaterial(&material);
+    monkey2->setMaterial(&material);
+
     RT::ObjLoader objLoader = RT::ObjLoader();
-    objLoader.loadObjFile("/home/daan/projects/SpaceGame/objFiles/monkey.obj");
-    objLoader.inflate(player);
+    objLoader.loadObjFile("/home/daan/projects/SpaceGame/objFiles/triangle.obj");
+    objLoader.inflate(monkey1);
+    objLoader.inflate(monkey2);
 
 
 
@@ -82,10 +88,12 @@ int main() {
 
 
     //player->build();
-    player->setPosition(1.0, 0.0, 0.0);
 
-    rtcontext->setCameraPosition(0.0f, 0.0f, 0.0f);
-    rtcontext->setCameraDirection(0.0f, 0.0f, -1.0f);
+    monkey1->setPosition(1.0, 0.0, 0.0);
+    monkey2->setPosition(-1.0, 0.0, 0.0);
+
+    rtcontext->setCameraPosition(0.0f, 0.0f, -4.0f);
+    rtcontext->setCameraDirection(0.0f, 0.0f, 1.0f);
 
 
     float distance = 4.0f;
@@ -97,8 +105,11 @@ int main() {
     while (!RT::windowShouldClose(window)) {
         //std::cout << "drawwwwww\n";
         frame += 0.01f;
-        rtcontext->setCameraPosition(distance * sin(frame), 0.0, distance * cos(frame));
-        rtcontext->setCameraDirection(-distance * sin(frame), 0.0, -distance * cos(frame));
+        //rtcontext->setCameraPosition(distance * sin(frame), 0.0, distance * cos(frame));
+        //rtcontext->setCameraDirection(-distance * sin(frame), 0.0, -distance * cos(frame));
+        monkey1->setPosition(sin(frame), 0.0, cos(frame));
+        //monkey1->rotate(0.01f, 0.0, 0.01f);
+
         rtcontext->draw(window);
         rtcontext->setDebugInfo(x, 0, 0);
 
