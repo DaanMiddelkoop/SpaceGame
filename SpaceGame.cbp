@@ -36,7 +36,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Linker>
-			<Add library="../RayTraceEngine/libRayTraceEngine.so" />
+			<Add library="/home/daan/projects/RayTraceEngine/libRayTraceEngine.so" />
 		</Linker>
 		<Unit filename="main.cpp" />
 		<Extensions>

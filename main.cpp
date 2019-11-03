@@ -19,6 +19,7 @@ int main() {
     std::vector<float> vertices = std::vector<float>();
     std::vector<float> uvcoords = std::vector<float>();
 
+
     int something = 20;
     for (int x = -something; x < something; x++) {
         for (int y = -something; y < something; y++) {
@@ -69,31 +70,26 @@ int main() {
 
 
     //player->setVertices(vertices.data(), vertices.size());
-
-
-    RT::Mesh* monkey1 = rtcontext->createMesh();
-    RT::Mesh* monkey2 = rtcontext->createMesh();
-
-    monkey1->setMaterial(&material);
-    monkey2->setMaterial(&material);
-
     RT::ObjLoader objLoader = RT::ObjLoader();
-    objLoader.loadObjFile("/home/daan/projects/SpaceGame/objFiles/triangle.obj");
-    objLoader.inflate(monkey1);
-    objLoader.inflate(monkey2);
+    objLoader.loadObjFile("/home/daan/projects/SpaceGame/objFiles/monkey.obj");
+
+    std::vector<RT::Mesh*> objects;
+    for (int x = 0; x < 10; x++) {
+        for (int y = 0; y < 10; y++) {
+            RT::Mesh* object = rtcontext->createMesh();
+            object->setMaterial(&material);
+            objLoader.inflate(object);
+            object->setPosition(x * 3, 0.0, y * 3);
+            //object->setPosition((float)x * 2.0, 0.0, (float) y * 2.0) ;
+
+            objects.push_back(object);
+
+        }
+    }
 
 
-
-    //player->setUVCoords(uvcoords.data(), uvcoords.size());
-
-
-    //player->build();
-
-    monkey1->setPosition(1.0, 0.0, 0.0);
-    monkey2->setPosition(-1.0, 0.0, 0.0);
-
-    rtcontext->setCameraPosition(0.0f, 0.0f, -4.0f);
-    rtcontext->setCameraDirection(0.0f, 0.0f, 1.0f);
+    rtcontext->setCameraPosition(25.0f, 20.0f, -20.0f);
+    rtcontext->setCameraDirection(-0.5f, -1.0f, 1.0f);
 
 
     float distance = 4.0f;
@@ -107,8 +103,13 @@ int main() {
         frame += 0.01f;
         //rtcontext->setCameraPosition(distance * sin(frame), 0.0, distance * cos(frame));
         //rtcontext->setCameraDirection(-distance * sin(frame), 0.0, -distance * cos(frame));
-        monkey1->setPosition(sin(frame), 0.0, cos(frame));
-        //monkey1->rotate(0.01f, 0.0, 0.01f);
+        //monkey1->setPosition(sin(frame), 0.0, cos(frame) + 5);
+        objects.at(0)->rotate(0, 0.01f, 0);
+        objects.at(5)->rotate(0, -0.1f, 0);
+        for (int i = 0; i < objects.size(); i++) {
+            //objects.at(i)->rotate(0, 0.001f * (float)(i), 0.0);
+        }
+        //monkey2->rotate(0.01f, 0.0, 0.01f);
 
         rtcontext->draw(window);
         rtcontext->setDebugInfo(x, 0, 0);
