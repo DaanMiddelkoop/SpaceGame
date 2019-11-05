@@ -74,12 +74,12 @@ int main() {
     objLoader.loadObjFile("/home/daan/projects/SpaceGame/objFiles/monkey.obj");
 
     std::vector<RT::Mesh*> objects;
-    for (int x = 0; x < 10; x++) {
-        for (int y = 0; y < 10; y++) {
+    for (int x = 0; x < 20; x++) {
+        for (int y = 0; y < 20; y++) {
             RT::Mesh* object = rtcontext->createMesh();
             object->setMaterial(&material);
             objLoader.inflate(object);
-            object->setPosition(x * 3, 0.0, y * 3);
+            object->setPosition((x - 0) * 3, 0.0, (y - 0) * 3);
             //object->setPosition((float)x * 2.0, 0.0, (float) y * 2.0) ;
 
             objects.push_back(object);
@@ -88,8 +88,24 @@ int main() {
     }
 
 
-    rtcontext->setCameraPosition(25.0f, 20.0f, -20.0f);
-    rtcontext->setCameraDirection(-0.5f, -1.0f, 1.0f);
+    rtcontext->setCameraPosition(-20.0f, 10.0f, -20.0f);
+    rtcontext->setCameraDirection(1.0f, -0.5f, 1.0f);
+//
+//    for (int i = 0; i < rtcontext->getNodes()->size(); i++) {
+//        rtcontext->getNodes()->at(i).print(rtcontext->getNodes());
+//        rtcontext->getNodes()->at(i).printBB();
+//    }
+
+
+
+    //rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).setDepths(rtcontext->getNodes());
+
+    rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).balance(rtcontext->getNodes());
+    rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).balance(rtcontext->getNodes());
+    rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).balance(rtcontext->getNodes());
+    rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).balance(rtcontext->getNodes());
+
+    rtcontext->updateGPUTreenodes();
 
 
     float distance = 4.0f;
@@ -100,12 +116,15 @@ int main() {
     float x = 0;
     while (!RT::windowShouldClose(window)) {
         //std::cout << "drawwwwww\n";
+
+        rtcontext->setCameraPosition(-20.0f * sin(frame) / 1.4, 10.0f * cos(frame), -20.0f * sin(frame) / 1.4);
+        rtcontext->setCameraDirection(1.0f * sin(frame), -0.5f * cos(frame), 1.0f * cos(frame));
         frame += 0.01f;
         //rtcontext->setCameraPosition(distance * sin(frame), 0.0, distance * cos(frame));
         //rtcontext->setCameraDirection(-distance * sin(frame), 0.0, -distance * cos(frame));
         //monkey1->setPosition(sin(frame), 0.0, cos(frame) + 5);
-        objects.at(0)->rotate(0, 0.01f, 0);
-        objects.at(5)->rotate(0, -0.1f, 0);
+        //objects.at(0)->rotate(0, 0.01f, 0);
+        //objects.at(5)->rotate(0, -0.1f, 0);
         for (int i = 0; i < objects.size(); i++) {
             //objects.at(i)->rotate(0, 0.001f * (float)(i), 0.0);
         }
