@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1572960144 source:/home/daan/projects/SpaceGame/main.cpp
+1573572652 source:/home/daan/projects/SpaceGame/main.cpp
 	<iostream>
 	<raytraceengine.h>
 	<vector>
@@ -8,15 +8,16 @@
 	<stdint.h>
 	<math.h>
 
-1571690630 /home/daan/projects/RayTraceEngine/include/raytraceengine.h
+1573569867 /home/daan/projects/RayTraceEngine/include/raytraceengine.h
 	<glad/glad.h>
 	<GLFW/glfw3.h>
-	"raytracecontext.h"
 	"rtwindow.h"
+	"raytracecontext.h"
 	"mesh.h"
 	"objloader.h"
+	"treevisualiser.h"
 
-1571144058 /home/daan/projects/RayTraceEngine/include/rtwindow.h
+1573569689 /home/daan/projects/RayTraceEngine/include/rtwindow.h
 	<glad/glad.h>
 	<GLFW/glfw3.h>
 
@@ -28,7 +29,7 @@
 	"raytracecontext.h"
 	"tree.h"
 
-1572821989 /home/daan/projects/RayTraceEngine/include/raytracecontext.h
+1573566641 /home/daan/projects/RayTraceEngine/include/raytracecontext.h
 	"rtwindow.h"
 	<vector>
 	"Triangle.h"
@@ -44,7 +45,7 @@
 	<inttypes.h>
 	<stdint.h>
 
-1572958658 /home/daan/projects/RayTraceEngine/include/tree.h
+1573564251 /home/daan/projects/RayTraceEngine/include/tree.h
 	<algorithm>
 	<vector>
 	"Triangle.h"
@@ -52,11 +53,11 @@
 
 1571690630 /home/daan/projects/RayTraceEngine/include/Triangle.h
 
-1571690630 /home/daan/projects/RayTraceEngine/include/texture.h
+1573569191 /home/daan/projects/RayTraceEngine/include/texture.h
 	<stdint.h>
 	"raytracecontext.h"
 
-1571690630 /home/daan/projects/RayTraceEngine/include/material.h
+1573569506 /home/daan/projects/RayTraceEngine/include/material.h
 	"raytracecontext.h"
 	"texture.h"
 
@@ -69,4 +70,9 @@
 1571690630 /home/daan/projects/RayTraceEngine/include/vertex.h
 
 1572877828 /home/daan/projects/RayTraceEngine/include/matrix4x4.h
+
+1573560222 /home/daan/projects/RayTraceEngine/include/treevisualiser.h
+	<string>
+	<vector>
+	"tree.h"
 

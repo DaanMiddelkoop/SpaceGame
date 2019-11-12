@@ -7,6 +7,15 @@
 #include <stdint.h>
 #include <math.h>
 
+bool paused = false;
+
+void pause_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_E && action == GLFW_PRESS)
+
+        paused = !paused;
+}
+
 int main() {
     std::cout << "SpaceGame v0.1\n";
     RT::init();
@@ -53,6 +62,8 @@ int main() {
 
     }
 
+    RT::setKeyCallBack(window, pause_callback);
+
     uint8_t texture_data[16] = {
         255, 0, 0, 255,
         0, 255, 0, 255,
@@ -74,8 +85,8 @@ int main() {
     objLoader.loadObjFile("/home/daan/projects/SpaceGame/objFiles/monkey.obj");
 
     std::vector<RT::Mesh*> objects;
-    for (int x = 0; x < 20; x++) {
-        for (int y = 0; y < 20; y++) {
+    for (int x = 0; x < 15; x++) {
+        for (int y = 0; y < 15; y++) {
             RT::Mesh* object = rtcontext->createMesh();
             object->setMaterial(&material);
             objLoader.inflate(object);
@@ -98,12 +109,14 @@ int main() {
 
 
 
-    //rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).setDepths(rtcontext->getNodes());
+    rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).setDepths(rtcontext->getNodes());
 
     rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).balance(rtcontext->getNodes());
     rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).balance(rtcontext->getNodes());
     rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).balance(rtcontext->getNodes());
     rtcontext->getNodes()->at(rtcontext->recoverSceneRoot()).balance(rtcontext->getNodes());
+
+    RT::TreeVisualiser("test2.dot", rtcontext->getNodes());
 
     rtcontext->updateGPUTreenodes();
 
@@ -117,9 +130,12 @@ int main() {
     while (!RT::windowShouldClose(window)) {
         //std::cout << "drawwwwww\n";
 
-        rtcontext->setCameraPosition(-20.0f * sin(frame) / 1.4, 10.0f * cos(frame), -20.0f * sin(frame) / 1.4);
+        rtcontext->setCameraPosition(-20.0f * sin(frame) / 1.4 + 20.0, 10.0f * cos(frame), -20.0f * sin(frame) / 1.4 + 20.0);
         rtcontext->setCameraDirection(1.0f * sin(frame), -0.5f * cos(frame), 1.0f * cos(frame));
-        frame += 0.01f;
+
+        if (!paused) {
+            frame += 0.005f;
+        }
         //rtcontext->setCameraPosition(distance * sin(frame), 0.0, distance * cos(frame));
         //rtcontext->setCameraDirection(-distance * sin(frame), 0.0, -distance * cos(frame));
         //monkey1->setPosition(sin(frame), 0.0, cos(frame) + 5);
@@ -142,3 +158,5 @@ int main() {
     }
 
 }
+
+
